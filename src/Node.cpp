@@ -1,14 +1,25 @@
-#include <iostream>
 #include "Node.h"
 
 Node::Node()
 {
-	this->next = NULL;
-}
-Node::Node(Course course, Node *nextValue) : data(course), next(nextValue)
-{
 }
 
-void Node::insertNode(Node *head, Course data)
+Node::Node(Course data)
 {
+	setData(data);
+}
+
+void Node::setData(Course data)
+{
+	this->data = data;
+}
+
+Course Node::getData()
+{
+	return data;
+}
+
+Node::~Node()
+{
+	this->next = nullptr;
 }

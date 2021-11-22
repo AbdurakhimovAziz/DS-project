@@ -2,11 +2,11 @@
 
 Course::Course() {}
 
-Course::Course(string name, string prof, int dayInt, string time, string room)
+Course::Course(string name, string prof, int dayNum, string time, string room)
 {
 	setName(name);
 	setProfessor(prof);
-	setDay(dayInt);
+	setDay(dayNum);
 	setTime(time);
 	setRoom(room);
 }
@@ -21,9 +21,9 @@ void Course::setProfessor(string prof)
 	this->professor = prof;
 }
 
-void Course::setDay(int dayInt)
+void Course::setDay(int dayNum)
 {
-	this->day = defineDay(dayInt);
+	this->day = defineDay(dayNum);
 }
 
 void Course::setTime(string time)
@@ -36,9 +36,9 @@ void Course::setRoom(string room)
 	this->room = room;
 }
 
-string Course::defineDay(int dayInt)
+string Course::defineDay(int dayNum)
 {
-	switch (dayInt)
+	switch (dayNum)
 	{
 	case 1:
 		return "Monday";

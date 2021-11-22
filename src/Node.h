@@ -4,16 +4,16 @@
 
 class Node
 {
-public:
+private:
 	Course data;
-	Node *next;
+
+public:
+	Node *next{nullptr};
 
 	Node();
-	Node(Course course, Node *nextValue = NULL);
+	Node(Course data);
 
-	void insertNode(Node *head, Course data);
-	void deleteNode(Node *head, string someKey);
-	void printAll(Node *head);
-	void printFilteredList(Node *head, string someFilter);
-	Node searchNode(Node *head, string someKey);
+	void setData(Course data);
+	Course getData();
+	~Node();
 };
