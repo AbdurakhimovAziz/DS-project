@@ -18,11 +18,14 @@ public:
 	void setTime(string time);
 	void setRoom(string room);
 
+	void print();
+
 	string getName();
 	string getProfessor();
 	string getDay();
 	string getTime();
 	string getRoom();
+	int getDayNum();
 
 	string defineDay(int dayNum); // convert from integer to string using switch
 };

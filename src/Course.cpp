@@ -1,4 +1,8 @@
 #include "Course.h"
+#include <iostream>
+
+using std::cout;
+using std::endl;
 
 Course::Course() {}
 
@@ -23,6 +27,7 @@ void Course::setProfessor(string prof)
 
 void Course::setDay(int dayNum)
 {
+	this->dayNum = dayNum;
 	this->day = defineDay(dayNum);
 }
 
@@ -62,6 +67,11 @@ string Course::defineDay(int dayNum)
 	}
 }
 
+void Course::print()
+{
+	cout << name << "\t" << day << "\t" << time << "\t" << room << "\t" << professor << endl;
+}
+
 string Course::getName()
 {
 	return name;
@@ -82,4 +92,9 @@ string Course::getTime()
 string Course::getRoom()
 {
 	return room;
+}
+
+int Course::getDayNum()
+{
+	return dayNum;
 }
