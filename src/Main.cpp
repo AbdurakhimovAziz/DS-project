@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
 	Course newCourse2("cl", "a", 4, "15", "a5");
 	Course newCourse3("bk", "a", 3, "15", "a5");
 	Course newCourse4("cl", "sdf", 1, "16", "a1");
-	Course newCourse5("ja", "sdf", 5, "16", "b55");
+	Course newCourse5("ds", "sdf", 5, "16", "b55");
 	courseList->insertNode(newCourse);
 	courseList->insertNode(newCourse1);
 	courseList->insertNode(newCourse2);
@@ -23,8 +23,8 @@ int main(int argc, char const *argv[])
 	courseList->insertNode(newCourse5);
 
 	courseList->printAll();
-	cout << "\n\nFiltered by name" << endl;
-	courseList->search("Cl");
+	// cout << "\n\nFiltered by name" << endl;
+	// courseList->search("Cl");
 
 	// system("pause");
 	return 0;

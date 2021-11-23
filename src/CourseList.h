@@ -6,7 +6,6 @@ class CourseList
 {
 private:
 	Node *head;
-	int length;
 
 public:
 	CourseList();

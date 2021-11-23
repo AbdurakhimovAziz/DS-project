@@ -76,9 +76,11 @@ void CourseList::printAll()
 void CourseList::search(string name)
 {
 	std::transform(name.begin(), name.end(), name.begin(), ::toupper); // convert the string to uppercase
-	cout << name << endl;
 
 	Node *curr = head;
+
+	int i = 1;
+
 	while (curr != nullptr) // traverse every node
 	{
 		string currCourseName = curr->getData().getName();																							 // get current course's name
@@ -86,6 +88,7 @@ void CourseList::search(string name)
 
 		if (currCourseName == name)
 		{
+			cout << i++ << "\t";
 			curr->getData().print(); // call print method of every node's data only if the condition is met
 		}
 		curr = curr->next;
