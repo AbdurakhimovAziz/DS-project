@@ -23,6 +23,8 @@ int main(int argc, char const *argv[])
 	courseList->insertNode(newCourse5);
 
 	courseList->printAll();
+	cout << "\n\nFiltered by name" << endl;
+	courseList->search("Cl");
 
 	// system("pause");
 	return 0;

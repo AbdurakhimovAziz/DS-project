@@ -1,4 +1,5 @@
 #include "CourseList.h"
+#include <algorithm>
 #include <iostream>
 
 using std::cout;
@@ -68,6 +69,25 @@ void CourseList::printAll()
 	while (curr != nullptr)
 	{
 		curr->getData().print(); // call print method of every node's data
+		curr = curr->next;
+	}
+}
+
+void CourseList::search(string name)
+{
+	std::transform(name.begin(), name.end(), name.begin(), ::toupper); // convert the string to uppercase
+	cout << name << endl;
+
+	Node *curr = head;
+	while (curr != nullptr) // traverse every node
+	{
+		string currCourseName = curr->getData().getName();																							 // get current course's name
+		std::transform(currCourseName.begin(), currCourseName.end(), currCourseName.begin(), ::toupper); // convert course name to uppercase
+
+		if (currCourseName == name)
+		{
+			curr->getData().print(); // call print method of every node's data only if the condition is met
+		}
 		curr = curr->next;
 	}
 }
