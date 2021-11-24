@@ -1,10 +1,13 @@
 #include "Course.h"
 #include <iostream>
 
+using std::cin;
 using std::cout;
 using std::endl;
 
-Course::Course() {}
+Course::Course()
+{
+}
 
 Course::Course(string name, string prof, int dayNum, string time, string room)
 {

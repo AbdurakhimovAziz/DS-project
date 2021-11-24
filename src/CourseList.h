@@ -6,7 +6,7 @@ class CourseList
 {
 private:
 	Node *head;
-	int length;
+	int length{0};
 
 public:
 	CourseList();
@@ -15,4 +15,5 @@ public:
 	bool deleteAt(int position);
 	void printAll();
 	void search(string name);
+	bool editAt(int position, Course course);
 };

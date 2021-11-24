@@ -80,10 +80,9 @@ void CourseList::printAll()
 void CourseList::search(string name)
 {
 	bool found = false;
+	Node *curr = head;
 
 	std::transform(name.begin(), name.end(), name.begin(), ::toupper); // convert the string to uppercase
-
-	Node *curr = head;
 
 	while (curr != nullptr) // traverse every node
 	{
@@ -107,13 +106,10 @@ bool CourseList::deleteAt(int position)
 		return false;
 
 	Node *curr = head;
-	// Node *prev = head;
-
 	int i = 1; // index of an element
 
 	while (i < position - 1)
 	{
-		// prev = curr;
 		curr = curr->next;
 		i++;
 	}
@@ -132,5 +128,22 @@ bool CourseList::deleteAt(int position)
 
 	temp->~Node(); // delete node
 	length--;
+	return true;
+}
+
+bool CourseList::editAt(int position, Course course)
+{
+	if (position > length || position < 1)
+		return false;
+
+	Node *curr = head;
+	int i = 1; // index of an element
+
+	while (i < position)
+	{
+		curr = curr->next;
+		i++;
+	}
+	curr->setData(course);
 	return true;
 }
