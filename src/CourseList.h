@@ -6,12 +6,13 @@ class CourseList
 {
 private:
 	Node *head;
+	int length;
 
 public:
 	CourseList();
 
-	void insertNode(Course data);
-	void deleteNode(string someKey);
+	void insert(Course data);
+	bool deleteAt(int position);
 	void printAll();
 	void search(string name);
 };
