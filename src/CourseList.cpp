@@ -10,7 +10,7 @@ CourseList::CourseList()
 	head = NULL; // initialize empty list
 }
 
-void CourseList::insertNode(Course data)
+void CourseList::insert(Course data)
 {
 	Node *newNode = new Node(data);
 	if (head == NULL) // insert into empty list
@@ -60,14 +60,18 @@ void CourseList::insertNode(Course data)
 			}
 		}
 	}
+	length++;
 }
 
 void CourseList::printAll()
 {
 
 	Node *curr = head;
+	int i = 1; // index of an element
+
 	while (curr != nullptr)
 	{
+		cout << i++ << "\t";
 		curr->getData().print(); // call print method of every node's data
 		curr = curr->next;
 	}
@@ -75,11 +79,10 @@ void CourseList::printAll()
 
 void CourseList::search(string name)
 {
-	std::transform(name.begin(), name.end(), name.begin(), ::toupper); // convert the string to uppercase
-
+	bool found = false;
 	Node *curr = head;
 
-	int i = 1;
+	std::transform(name.begin(), name.end(), name.begin(), ::toupper); // convert the string to uppercase
 
 	while (curr != nullptr) // traverse every node
 	{
@@ -88,14 +91,59 @@ void CourseList::search(string name)
 
 		if (currCourseName == name)
 		{
-			cout << i++ << "\t";
+			found = true;
 			curr->getData().print(); // call print method of every node's data only if the condition is met
 		}
 		curr = curr->next;
 	}
+	if (!found)
+		cout << "No such course" << endl;
 }
 
-void CourseList::deleteNode(string someKey)
+bool CourseList::deleteAt(int position)
 {
-	// TODO display all list with indexes and delete by index
+	if (position > length || position < 1)
+		return false;
+
+	Node *curr = head;
+	int i = 1; // index of an element
+
+	while (i < position - 1)
+	{
+		curr = curr->next;
+		i++;
+	}
+	Node *temp = nullptr; // to store node which is going to be deleted
+
+	if (position == 1) // delete from head
+	{
+		temp = curr;
+		head = curr->next;
+	}
+	else
+	{
+		temp = curr->next;
+		curr->next = curr->next->next;
+	}
+
+	temp->~Node(); // delete node
+	length--;
+	return true;
+}
+
+bool CourseList::editAt(int position, Course course)
+{
+	if (position > length || position < 1)
+		return false;
+
+	Node *curr = head;
+	int i = 1; // index of an element
+
+	while (i < position)
+	{
+		curr = curr->next;
+		i++;
+	}
+	curr->setData(course);
+	return true;
 }
