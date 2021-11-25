@@ -22,7 +22,7 @@ void CourseList::insert(Course data)
 		Node *curr = head;
 		Node *prev = nullptr;
 
-		while (curr != nullptr && curr->getData().getDayNum() < newNode->getData().getDayNum())
+		while (curr != nullptr && curr->getData().getDayNum() <= newNode->getData().getDayNum() && curr->next != nullptr)
 		{
 			// compare course days, if new node's day is "more" than current node's we enter inside the while loop
 			prev = curr;
@@ -135,17 +135,8 @@ bool CourseList::deleteAt(int position)
 
 bool CourseList::editAt(int position, Course course)
 {
-	if (position > length || position < 1)
-		return false;
-
-	Node *curr = head;
-	int i = 1; // index of an element
-
-	while (i < position)
+	if (deleteAt(position))
 	{
-		curr = curr->next;
-		i++;
+		insert(course);
 	}
-	curr->setData(course);
-	return true;
 }
