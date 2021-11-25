@@ -10,62 +10,119 @@ Course createCourse()
 	string name, profName, time, room;
 	int dayNum;
 
-	cout << "Enter the name: ";
+	cout << "Enter the course name (only first letters) : " << endl;
 	cin >> name;
-	cout << "Enter professor's name: ";
+	cout << "Enter professor's name (N.Surname): " << endl;
 	cin >> profName;
-	cout << "Choose day" << endl;
-	cout << "1. Monday\n2. Tuesday\n3. Wednesday\n4. Thursday\n5. Friday\n(1-5): ";
+	cout << "Choose a day: " << endl;
+	cout << "1. Mon\n2. Tue\n3. Wed\n4. Thu\n5. Fri\n(1-5): " << endl;
 	cin >> dayNum;
-	cout << "Enter time: ";
+	cout << "Enter time (hh:mm): " << endl;
 	cin >> time;
-	cout << "Enter room: ";
+	cout << "Enter room: " << endl;
 	cin >> room;
 
 	Course course(name, profName, dayNum, time, room);
+	
 	return course;
 }
 
-int main(int argc, char const *argv[])
+int main(int argc, char const* argv[])
 {
+	system("color 3F"); 
 
-	CourseList *courseList = new CourseList();
-	Course newCourse("EM", "A.Tomskova", 5, "11:00", "B209");
-	Course newCourse1("LA", "A.Tomskova", 1, "12:30", "B207");
-	Course newCourse2("CL", "Ch.An", 4, "15:00", "A202");
-	Course newCourse3("BK", "N.An", 3, "15:00", "A515");
-	Course newCourse4("CL", "Ch.An", 1, "16:00", "B201");
-	Course newCourse5("ds", "sdf", 5, "10", "b55");
-	courseList->insert(newCourse);
+	CourseList* courseList = new CourseList();
+	Course newCourse1("EM", "A.Tomskova", 5, "11:00", "B209");
+	Course newCourse2("LA", "A.Tomskova", 1, "12:30", "B207");
+	Course newCourse3("CL", "Ch.An", 4, "15:00", "A202");
+	Course newCourse4("BK", "N.An", 3, "15:00", "A515");
+	Course newCourse5("CL", "Ch.An", 1, "16:00", "B201");
 	courseList->insert(newCourse1);
 	courseList->insert(newCourse2);
 	courseList->insert(newCourse3);
 	courseList->insert(newCourse4);
 	courseList->insert(newCourse5);
 
-	courseList->printAll();
+	cout << "Choose one of the options below:" << endl << endl;
+	cout << "1. For students" << endl << "2. For professors" << endl;
+	cout << "Enter 1 or 2: ";
+	int option;
+	cin >> option;
 
-	// int position;
-	// cout << "Enter the position of the course you want to delete: ";
-	// cin >> position;
+	string course_name;
 
-	// if (courseList->deleteAt(position))
-	// {
-	// 	cout << "deleted succesfully" << endl;
-	// 	courseList->printAll();
-	// }
-
-	int position1;
-	cout << "Enter the position of the course you want to edit: ";
-	cin >> position1;
-
-	Course course = createCourse();
-	courseList->editAt(position1, course);
-	courseList->printAll();
-
-	// cout << "\n\nFiltered by name" << endl;
-	// courseList->search("Cl");
-
-	// system("pause");
+	if (option == 1)
+	{
+		cout << endl;
+		cout << "Enter the course name to search (only first letters): " << endl;
+		cin >> course_name;
+		cout << endl;
+		courseList->search(course_name);
+	}
+	if (option == 2)
+	{
+		cout << endl << endl;
+		cout << "Choose the action:" << endl << endl;
+		cout << "1) add" << endl << "2) search" << endl << "3) edit" << endl << "4) delete" << endl;
+		cout << "Enter 1,2,3 or 4: ";
+		int a;
+		cin >> a;
+		int pos;
+		Course course;
+		cout << endl;
+		switch (a)
+		{
+		case 1: 
+			course = createCourse();
+			courseList->insert(course);
+			cout << endl;
+			cout << endl << "Added successfully !" << endl << endl;
+			courseList->printAll();
+			break;
+		case 2:
+			cout << "Enter the course name to search (only first letters): " << endl;
+			cin >> course_name;
+			cout << endl;
+			courseList->search(course_name);
+			break;
+		case 3:
+			courseList->printAll();
+			cout << endl << "Enter the position of the course you want to edit : ";
+			cin >> pos;
+			cout << endl;
+			course = createCourse();
+			cout << endl;
+			if (courseList->editAt(pos, course))
+			{
+				cout << endl << "Edited successfully !" << endl << endl;
+			    courseList->printAll();
+			}
+			else
+			{
+				cout << "No course with such index !!!" << endl << endl;
+			}
+			break;
+		case 4:
+			courseList->printAll();
+			cout << endl << "Enter the position of the course you want to delete: " ;
+			cin >> pos;
+			cout << endl;
+			if (courseList->deleteAt(pos))
+			{ 
+				cout << endl << "Deleted succesfully !" << endl << endl;
+			    courseList->printAll();
+			}
+			else
+			{
+				cout << "No course with such index !!!" << endl << endl;
+			}
+			break;
+		default:
+			cout << "Wrong input !!!" << endl;
+			break;
+		}
+	}
+	 
+	system("pause");
 	return 0;
 }
