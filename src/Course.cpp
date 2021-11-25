@@ -49,19 +49,19 @@ string Course::defineDay(int dayNum)
 	switch (dayNum)
 	{
 	case 1:
-		return "Monday";
+		return "Mon";
 		break;
 	case 2:
-		return "Tuesday";
+		return "Tue";
 		break;
 	case 3:
-		return "Wednesday";
+		return "Wed";
 		break;
 	case 4:
-		return "Thursday";
+		return "Thu";
 		break;
 	case 5:
-		return "Friday";
+		return "Fri";
 		break;
 
 	default:
@@ -72,7 +72,7 @@ string Course::defineDay(int dayNum)
 
 void Course::print()
 {
-	cout << name << "\t" << day << "\t" << time << "\t" << room << "\t" << professor << endl;
+	cout << name << "  \t" << day << "\t" << time << "\t" << room << "\t" << professor << endl;
 }
 
 string Course::getName()
