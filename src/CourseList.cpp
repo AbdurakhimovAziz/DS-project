@@ -31,8 +31,9 @@ void CourseList::insert(Course data)
 
 		if (prev == nullptr) // if there is only 1 element in the list or new node's day is less than head node's day
 		{
-			if (newNode->getData().getTime().compare(head->getData().getTime()) > 0)
-			// compare course times, if new node's course time is more than head's course time we enter inside if statement
+			if (newNode->getData().getDayNum() == head->getData().getDayNum() &&
+					newNode->getData().getTime().compare(head->getData().getTime()) > 0)
+			// if they are in the same day compare course times, if new node's course time is more than head's course time we enter inside if statement
 			{
 				// insert after head node
 				newNode->next = head->next;
@@ -47,7 +48,8 @@ void CourseList::insert(Course data)
 		}
 		else
 		{
-			if (newNode->getData().getTime().compare(curr->getData().getTime()) > 0)
+			if (newNode->getData().getDayNum() == head->getData().getDayNum() &&
+					newNode->getData().getTime().compare(curr->getData().getTime()) > 0)
 			// compare course times, if new node's course time is more than current node's course time we enter inside if statement
 			{ // insert after current node
 				newNode->next = curr->next;
