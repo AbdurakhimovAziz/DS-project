@@ -71,6 +71,14 @@ void CourseList::printAll()
 	Node *curr = head;
 	int i = 1; // index of an element
 
+	cout << "No"
+			 << "\tCourse"
+			 << "\tDay"
+			 << "\tTime"
+			 << "\tRoom"
+			 << "\tProfessor" << endl
+			 << endl;
+
 	while (curr != nullptr)
 	{
 		cout << i++ << "\t";
@@ -83,7 +91,7 @@ void CourseList::search(string name)
 {
 	bool found = false;
 	Node *curr = head;
-
+	int i = 1;
 	std::transform(name.begin(), name.end(), name.begin(), ::toupper); // convert the string to uppercase
 
 	while (curr != nullptr) // traverse every node
@@ -93,7 +101,18 @@ void CourseList::search(string name)
 
 		if (currCourseName == name)
 		{
-			found = true;
+			if (!found)
+			{
+				cout << "No"
+						 << "\tCourse"
+						 << "\tDay"
+						 << "\tTime"
+						 << "\tRoom"
+						 << "\tProfessor" << endl
+						 << endl;
+				found = true;
+			}
+			cout << i++ << "\t";
 			curr->getData().print(); // call print method of every node's data only if the condition is met
 		}
 		curr = curr->next;
@@ -138,5 +157,7 @@ bool CourseList::editAt(int position, Course course)
 	if (deleteAt(position))
 	{
 		insert(course);
+		return true;
 	}
+	return false;
 }
