@@ -23,28 +23,32 @@ Course createCourse()
 	cin >> room;
 
 	Course course(name, profName, dayNum, time, room);
-	
+
 	return course;
 }
 
-int main(int argc, char const* argv[])
+int main(int argc, char const *argv[])
 {
-	system("color 3F"); 
+	system("color 3F");
 
-	CourseList* courseList = new CourseList();
-	Course newCourse1("EM", "A.Tomskova", 5, "11:00", "B209");
-	Course newCourse2("LA", "A.Tomskova", 1, "12:30", "B207");
-	Course newCourse3("CL", "Ch.An", 4, "15:00", "A202");
-	Course newCourse4("BK", "N.An", 3, "15:00", "A515");
-	Course newCourse5("CL", "Ch.An", 1, "16:00", "B201");
-	courseList->insert(newCourse1);
-	courseList->insert(newCourse2);
-	courseList->insert(newCourse3);
-	courseList->insert(newCourse4);
-	courseList->insert(newCourse5);
+	CourseList *courseList = new CourseList();
 
-	cout << "Choose one of the options below:" << endl << endl;
-	cout << "1. For students" << endl << "2. For professors" << endl;
+	courseList->insert(*new Course("EM", "A.Tomskova", 3, "11:00", "B209"));
+	courseList->insert(*new Course("LA", "A.Tomskova", 1, "12:30", "B207"));
+	courseList->insert(*new Course("CL", "Ch.An", 4, "15:00", "A202"));
+	courseList->insert(*new Course("BK", "N.An", 3, "15:00", "A515"));
+	courseList->insert(*new Course("CL", "Ch.An", 1, "16:00", "B201"));
+	courseList->insert(*new Course("EM", "A.Tomskova", 1, "10:30", "B201"));
+	courseList->insert(*new Course("DS", "A.Seth", 1, "12:00", "B101"));
+	courseList->insert(*new Course("DS", "A.Seth", 2, "12:00", "B101"));
+	courseList->insert(*new Course("AE", "Sh.Isayeva", 2, "15:00", "B208"));
+	courseList->insert(*new Course("AE", "Sh.Isayeva", 5, "12:30", "B208"));
+	courseList->insert(*new Course("Java", "A.Tarawade", 5, "09:00", "B103"));
+
+	cout << "Choose one of the options below:" << endl
+			 << endl;
+	cout << "1. For students" << endl
+			 << "2. For professors" << endl;
 	cout << "Enter 1 or 2: ";
 	int option;
 	cin >> option;
@@ -61,9 +65,14 @@ int main(int argc, char const* argv[])
 	}
 	if (option == 2)
 	{
-		cout << endl << endl;
-		cout << "Choose the action:" << endl << endl;
-		cout << "1) add" << endl << "2) search" << endl << "3) edit" << endl << "4) delete" << endl;
+		cout << endl
+				 << endl;
+		cout << "Choose the action:" << endl
+				 << endl;
+		cout << "1) add" << endl
+				 << "2) search" << endl
+				 << "3) edit" << endl
+				 << "4) delete" << endl;
 		cout << "Enter 1,2,3 or 4: ";
 		int a;
 		cin >> a;
@@ -72,11 +81,13 @@ int main(int argc, char const* argv[])
 		cout << endl;
 		switch (a)
 		{
-		case 1: 
+		case 1:
 			course = createCourse();
 			courseList->insert(course);
 			cout << endl;
-			cout << endl << "Added successfully !" << endl << endl;
+			cout << endl
+					 << "Added successfully !" << endl
+					 << endl;
 			courseList->printAll();
 			break;
 		case 2:
@@ -87,34 +98,42 @@ int main(int argc, char const* argv[])
 			break;
 		case 3:
 			courseList->printAll();
-			cout << endl << "Enter the position of the course you want to edit : ";
+			cout << endl
+					 << "Enter the position of the course you want to edit : ";
 			cin >> pos;
 			cout << endl;
 			course = createCourse();
 			cout << endl;
 			if (courseList->editAt(pos, course))
 			{
-				cout << endl << "Edited successfully !" << endl << endl;
-			    courseList->printAll();
+				cout << endl
+						 << "Edited successfully !" << endl
+						 << endl;
+				courseList->printAll();
 			}
 			else
 			{
-				cout << "No course with such index !!!" << endl << endl;
+				cout << "No course with such index !!!" << endl
+						 << endl;
 			}
 			break;
 		case 4:
 			courseList->printAll();
-			cout << endl << "Enter the position of the course you want to delete: " ;
+			cout << endl
+					 << "Enter the position of the course you want to delete: ";
 			cin >> pos;
 			cout << endl;
 			if (courseList->deleteAt(pos))
-			{ 
-				cout << endl << "Deleted succesfully !" << endl << endl;
-			    courseList->printAll();
+			{
+				cout << endl
+						 << "Deleted succesfully !" << endl
+						 << endl;
+				courseList->printAll();
 			}
 			else
 			{
-				cout << "No course with such index !!!" << endl << endl;
+				cout << "No course with such index !!!" << endl
+						 << endl;
 			}
 			break;
 		default:
@@ -122,7 +141,7 @@ int main(int argc, char const* argv[])
 			break;
 		}
 	}
-	 
+
 	system("pause");
 	return 0;
 }

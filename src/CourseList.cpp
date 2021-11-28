@@ -22,29 +22,34 @@ void CourseList::insert(Course data)
 		Node *curr = head;
 		Node *prev = nullptr;
 
-		while (curr != nullptr && curr->getData().getDayNum() <= newNode->getData().getDayNum() && curr->next != nullptr)
+		while (curr != nullptr && curr->getData().getDayNum() < newNode->getData().getDayNum())
 		{
 			// compare course days, if new node's day is "more" than current node's we enter inside the while loop
 			prev = curr;
 			curr = curr->next;
 		}
 
+		if (curr == nullptr) // insert at the end of list
+		{
+			prev->next = newNode;
+			return;
+		}
+
+		if (curr->getData().getDayNum() == newNode->getData().getDayNum())
+		{ // if days are equal iterate until we encounter course with the later time
+			while (curr->getData().getTime().compare(newNode->getData().getTime()) < 0 &&
+						 curr->getData().getDayNum() == newNode->getData().getDayNum() && curr->next != nullptr)
+			{
+				prev = curr;
+				curr = curr->next;
+			}
+		}
+
 		if (prev == nullptr) // if there is only 1 element in the list or new node's day is less than head node's day
 		{
-			if (newNode->getData().getDayNum() == head->getData().getDayNum() &&
-					newNode->getData().getTime().compare(head->getData().getTime()) > 0)
-			// if they are in the same day compare course times, if new node's course time is more than head's course time we enter inside if statement
-			{
-				// insert after head node
-				newNode->next = head->next;
-				head->next = newNode;
-			}
-			else
-			{
-				// insert before head node
-				newNode->next = head;
-				head = newNode;
-			}
+			// insert before head node
+			newNode->next = head;
+			head = newNode;
 		}
 		else
 		{
