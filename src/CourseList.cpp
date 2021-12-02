@@ -32,6 +32,7 @@ void CourseList::insert(Course data)
 		if (curr == nullptr) // insert at the end of list
 		{
 			prev->next = newNode;
+			length++;
 			return;
 		}
 
